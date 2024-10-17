@@ -13,11 +13,10 @@ async function run() {
             throw new Error(`Report file not found: ${reportFile}`)
         }
         const url = `https://api.telegram.org/bot${telegramBotToken}/sendDocument`
-        const file = fs.readFileSync(reportFile)
 
         const formData = new FormData()
         formData.append('chat_id', telegramChatId)
-        formData.append('document', file, reportFile)
+        formData.append('document', fs.createReadStream(reportFile))
         formData.append('caption', message)
         formData.append('parse_mode', 'Markdown')
 
