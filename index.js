@@ -1,5 +1,4 @@
 const core = require('@actions/core')
-const axios = require('axios')
 const fs = require('fs')
 
 async function run() {
@@ -20,7 +19,7 @@ async function run() {
         formData.append('caption', message)
         formData.append('parse_mode', 'Markdown')
 
-        const response = await axios.post(url, formData)
+        const response = await fetch(url, { method: 'POST', body: formData })
 
         console.log('Report sent successfully:', response.data)
     } catch (error) {
