@@ -1,10 +1,11 @@
 name: Test
 
 on: 
-  workflow_dispatch: 
+  worflow_dispatch:
 
 jobs: 
   test:
     runs-on: ununtu-latest
     steps:
-      - uses: 
+      - uses: ./
+        with: 
