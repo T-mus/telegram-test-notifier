@@ -19,6 +19,8 @@ async function run() {
         formData.append('caption', message)
         formData.append('parse_mode', 'Markdown')
 
+        console.log(formData)        
+
         const response = await fetch(url, { method: 'POST', body: formData })
 
         console.log('Report sent successfully:', response.data)
