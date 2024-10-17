@@ -18,9 +18,8 @@ inputs:
 runs:
   using: 'node20'
   main: 'index.js'
-  steps: 
-    - name: 'Install dependencies' 
-      run: npm install
+  pre:
+    - run: npm install
  
 branding:
   icon: check-square
