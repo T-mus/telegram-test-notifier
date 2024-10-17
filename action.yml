@@ -1,0 +1,41 @@
+name: 'Send a test report to Telegram'
+description: 'Sends test reports to a Telegram Bot'
+inputs:
+  telegram_bot_token:
+    description: 'The token for the Telegram bot'
+    required: true
+  telegram_chat_id:
+    description: 'The chat ID to send messages to'
+    required: true
+  report_file:
+    description: 'Path to the report file to send'
+    required: true
+  message:
+    description: 'Message to include with the report'
+    required: false
+    default: 'Test report'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Cache npm dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node_modules-
+
+    - name: Install dependencies
+      run: npm ci
+      shell: bash
+
+    - run: node index.js
+      shell: bash
+ 
+branding:
+  icon: check-square
+  color: purple
