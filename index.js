@@ -25,6 +25,7 @@ async function run() {
         console.log('Report sent successfully:', response.data)
     } catch (error) {
         core.setFailed(`Error: ${error.message}`)
+        console.log(error)        
     }
 }
 
