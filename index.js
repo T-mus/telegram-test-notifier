@@ -20,9 +20,7 @@ async function run() {
         formData.append('caption', message)
         formData.append('parse_mode', 'Markdown')
 
-        const response = await axios.post(url, formData, {
-            headers: formData.getHeaders(),
-        })
+        const response = await axios.post(url, formData)
 
         console.log('Report sent successfully:', response.data)
     } catch (error) {
